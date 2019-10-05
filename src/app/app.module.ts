@@ -12,6 +12,7 @@ import { TestDirective } from './directives/test.directive';
 import ChangeBgColorDirective from './directives/change-bg-color.directive';
 import BackgroudGreenDirective from './directives/backgroud.green.directive';
 import { ShowLogoDirective } from './directives/show.logo.directive';
+import TempConverterPipe from './pipes/temp.converter.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ShowLogoDirective } from './directives/show.logo.directive';
     TestDirective,
     ChangeBgColorDirective,
     BackgroudGreenDirective,
-    ShowLogoDirective
+    ShowLogoDirective,
+    TempConverterPipe
   ],
   imports: [
     BrowserModule,

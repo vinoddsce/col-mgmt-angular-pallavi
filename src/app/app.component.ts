@@ -22,6 +22,9 @@ export class AppComponent implements OnInit {
   isDev: boolean = true;
   isShowLogo: boolean = true;
 
+
+  toDate: Date = new Date();
+
   constructor(private ref: ElementRef) {
 
   }

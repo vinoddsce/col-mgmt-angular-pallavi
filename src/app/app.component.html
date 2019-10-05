@@ -3,8 +3,25 @@
     <button (click)="showLogo($event)">ShowLogo</button>
     <button (click)="hideLogo($event)">HideLogo</button>
     <ng-container *ngTemplateOutlet="companyLogo"></ng-container>
+    <br />
+    Login Time : {{toDate | date : 'medium' | uppercase}}
+    <!-- <p>medium : {{toDate | date:'medium'}} </p>
+                  <p>short : {{toDate | date:'short'}} </p>
+                  <p>fullDate : {{toDate | date:'fullDate'}} </p>
+                  <p>longDate : {{toDate | date:'longDate'}} </p>
+                  <p>mediumDate : {{toDate | date:'mediumDate'}} </p>
+                  <p>shortDate : {{toDate | date:'shortDate'}} </p>
+                  <p>mediumTime : {{toDate | date:'mediumTime'}} </p>
+                  <p>dd-MM-y : {{toDate | date:'dd-MM-y'}} </p>
+                  <p>dd-MM-yy HH:mm : {{toDate | date:'dd-MM-yy HH:mm'}} </p> -->
+    <br />
+
+    <p>Temprature In Farh : {{100 | tempConv:'F': ' to F '}}</p>
+    <p>Temprature In Cel : {{100 | tempConv:'C': ' to C '}}</p>
     <hr />
     <hr />
+
+
 
     <app-department-container (addStudentEvent)="addStudentEvent($event)">
         <!-- <ng-container *ngTemplateOutlet="companyLogo"></ng-container> -->
@@ -22,9 +39,6 @@
         <h1 #heading>Heading Ref</h1>
     </app-student-container>
 </div>
-
-
-
 
 
 <ng-template #companyLogo>
