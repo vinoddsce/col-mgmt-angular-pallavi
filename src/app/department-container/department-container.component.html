@@ -1,0 +1,18 @@
+<h3><span style="color: #000000">Department Name Is : </span>{{deptName}}</h3>
+
+<ng-content></ng-content>
+
+<div *ngIf="showErrorMessage" class="error-message">
+    <p>Can't add empty student details</p>
+</div>
+
+
+<div>
+    <!-- <input placeholder="Enter name here" type="text" name="name" (change)="nameChangeHandler($event.target.value)" /> -->
+    <input [(ngModel)]="stdName" />
+    <input [(ngModel)]="stdCourse" />
+    <input [(ngModel)]="stdFees" />
+    <button (click)="addStudentDetails($event)">Add</button>
+</div>
+
+<app-department></app-department>

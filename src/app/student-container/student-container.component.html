@@ -1,0 +1,32 @@
+<!-- {{students|json}} -->
+
+<h3 #count>Total Students: {{count}}</h3>
+
+
+<!-- <ng-content select="h2"></ng-content> -->
+<!-- <ng-content></ng-content>
+<ng-content select="h3"></ng-content> -->
+
+<ng-container *ngTemplateOutlet="companyLogo ? companyLogo : defaultLogo"></ng-container>
+
+
+<h3>{{countMessage}}</h3>
+
+<h3><span style="margin: 0px 20px">ID</span><span style="margin: 0px 20px">Name</span><span style="margin: 0px 20px">Course</span><span
+        style="margin: 0px 20px">Fees</span></h3>
+
+<!-- <p *ngFor="let student of students">
+    <span style="margin: 0px 20px">{{student._id}}</span><span style="margin: 0px 20px">{{student.name}}</span><span
+        style="margin: 0px 20px">{{student.course}}</span><span style="margin: 0px 20px">{{student.fees}}</span>
+</p> -->
+
+<app-student *ngFor="let student of students" [_id]="student._id" [name]="student.name" [course]="student.course"
+    [fees]="student.fees">
+
+</app-student>
+                       
+ 
+<!-- 
+<ng-template #defaultLogo>
+    <h2>Default Logo</h2>
+</ng-template> -->

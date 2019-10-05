@@ -1,0 +1,9 @@
+.fees-zero {
+    color: red;
+    font-weight: bold;
+}
+
+.fees {
+    color: green;
+    font-weight: bold;
+}
