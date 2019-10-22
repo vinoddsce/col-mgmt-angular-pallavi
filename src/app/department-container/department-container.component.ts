@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-department-container',
@@ -12,17 +13,20 @@ export class DepartmentContainerComponent {
 
   showErrorMessage: boolean = false;
 
-  stdName: string = "";
-  stdCourse: string = "";
-  stdFees: number = 0;
+  // stdName: string = "";
+  // stdCourse: string = "";
+  // stdFees: number = 0;
 
+  stdName = new FormControl('');
+  stdCourse = new FormControl('');
+  stdFees = new FormControl('');
 
   addStudentDetails(event: MouseEvent) {
-    if (this.stdName === null || this.stdName === '') {
-      this.showErrorMessage = true;
-    } else {
-      this.showErrorMessage = false;
-      this.addStudentEvent.emit({ name: this.stdName, course: this.stdCourse, fees: this.stdFees });
-    }
+    // if (this.stdName === null || this.stdName === '') {
+    //   this.showErrorMessage = true;
+    // } else {
+    //   this.showErrorMessage = false;
+    //   this.addStudentEvent.emit({ name: this.stdName, course: this.stdCourse, fees: this.stdFees });
+    // }
   }
 }

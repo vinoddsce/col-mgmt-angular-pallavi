@@ -7,12 +7,20 @@
 </div>
 
 
-<div>
-    <!-- <input placeholder="Enter name here" type="text" name="name" (change)="nameChangeHandler($event.target.value)" /> -->
+<!-- <div>
     <input [(ngModel)]="stdName" />
     <input [(ngModel)]="stdCourse" />
     <input [(ngModel)]="stdFees" />
     <button (click)="addStudentDetails($event)">Add</button>
+</div> -->
+
+<div>
+
+    <h3>Student Form</h3>
+
+    Name: <input type="text" [formControl]="stdName" />
+
 </div>
+<p>Name Is: {{stdName.value}}</p>
 
 <app-department></app-department>
