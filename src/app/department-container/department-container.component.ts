@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-department-container',
@@ -17,16 +17,28 @@ export class DepartmentContainerComponent {
   // stdCourse: string = "";
   // stdFees: number = 0;
 
-  stdName = new FormControl('');
-  stdCourse = new FormControl('');
-  stdFees = new FormControl('');
+  studentForm = new FormGroup({
+    stdName: new FormControl(''),
+    stdCourse: new FormControl(''),
+    stdFees: new FormControl(''),
+    address: new FormGroup({
+      street: new FormControl(''),
+      city: new FormControl(''),
+      state: new FormControl(''),
+      zip: new FormControl('')
+    })
+  })
 
-  addStudentDetails(event: MouseEvent) {
-    // if (this.stdName === null || this.stdName === '') {
-    //   this.showErrorMessage = true;
-    // } else {
-    //   this.showErrorMessage = false;
-    //   this.addStudentEvent.emit({ name: this.stdName, course: this.stdCourse, fees: this.stdFees });
-    // }
+  onSubmit() {
+    console.log("Submit Event: ", this.studentForm.value);
+    if (this.studentForm.value.stdName === null || this.studentForm.value.stdName === '') {
+      this.showErrorMessage = true;
+    } else {
+      this.showErrorMessage = false;
+      this.addStudentEvent.emit({
+        name: this.studentForm.value.stdName,
+        course: this.studentForm.value.stdCourse, fees: this.studentForm.value.stdFees
+      });
+    }
   }
 }

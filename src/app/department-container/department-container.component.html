@@ -18,9 +18,48 @@
 
     <h3>Student Form</h3>
 
-    Name: <input type="text" [formControl]="stdName" />
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit($event)">
+        <label>
+            Name:
+            <input type="text" formControlName="stdName" required />
+        </label>
+        <label>
+            Course:
+            <input type="text" formControlName="stdCourse" required />
+        </label>
+        <label>
+            Fees:
+            <input type="text" formControlName="stdFees" required />
+        </label>
+
+        <div formGroupName="address">
+            <h3>Address</h3>
+
+            <label>
+                Street:
+                <input type="text" formControlName="street">
+            </label>
+
+            <label>
+                City:
+                <input type="text" formControlName="city">
+            </label>
+
+            <label>
+                State:
+                <input type="text" formControlName="state">
+            </label>
+
+            <label>
+                Zip Code:
+                <input type="text" formControlName="zip">
+            </label>
+        </div>
+        <button type="submit" [disabled]="!studentForm.valid">Submit</button>
+    </form>
+
 
 </div>
-<p>Name Is: {{stdName.value}}</p>
+<!-- <p>Name Is: {{stdName.value}}</p> -->
 
 <app-department></app-department>
