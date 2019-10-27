@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-department-container',
@@ -13,21 +13,38 @@ export class DepartmentContainerComponent {
 
   showErrorMessage: boolean = false;
 
+
+  constructor(private fb: FormBuilder) {
+
+  }
+
   // stdName: string = "";
   // stdCourse: string = "";
   // stdFees: number = 0;
 
-  studentForm = new FormGroup({
-    stdName: new FormControl(''),
-    stdCourse: new FormControl(''),
-    stdFees: new FormControl(''),
-    address: new FormGroup({
-      street: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      zip: new FormControl('')
-    })
-  })
+  // studentForm = new FormGroup({
+  //   stdName: new FormControl(''),
+  //   stdCourse: new FormControl(''),
+  //   stdFees: new FormControl(''),
+  //   address: new FormGroup({
+  //     street: new FormControl(''),
+  //     city: new FormControl(''),
+  //     state: new FormControl(''),
+  //     zip: new FormControl('')
+  //   })
+  // })
+
+  studentForm = this.fb.group({
+    stdName: [''],
+    stdCourse: [''],
+    stdFees: ['', Validators.required],
+    address: this.fb.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      zip: ['']
+    }),
+  });
 
   onSubmit() {
     console.log("Submit Event: ", this.studentForm.value);
