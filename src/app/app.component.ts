@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
     // this.students.push(this.s2);
     // this.students.push(this.s3);
   }
-  addStudentEvent(obj: { name: string, course: string, fees: number }) {
+  addStudentEvent(obj: Student) {
     let std = {
       _id: this.students.length + 1 + "",
       name: obj.name,
@@ -57,6 +57,16 @@ export class AppComponent implements OnInit {
     this.students.push(std);
     this.count = this.students.length;
     console.log(this.students);
+  }
+
+  deleteStudent(_id: string) {
+    console.log("Before: ", this.students);
+    this.students = this.students.filter(std => {
+      if (std._id != _id) {
+        return std;
+      }
+    });
+    console.log("After: ", this.students);
   }
 }
 

@@ -35,7 +35,7 @@
         <h3>Sub-Title: Only Students</h3>
     </app-student-container> -->
 
-    <app-student-container [students]="students" [count]="count">
+    <app-student-container [students]="students" [count]="count" (deleteStudentEmitter)="deleteStudent($event)">
         <h1 #heading>Heading Ref</h1>
     </app-student-container>
 </div>

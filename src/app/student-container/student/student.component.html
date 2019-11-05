@@ -1,4 +1,8 @@
 <p><span style="margin: 0px 20px">{{_id}}</span>
     <span style="margin: 0px 20px">{{name}}</span>
     <span style="margin: 0px 20px">{{course}}</span>
-    <span [ngClass]="getClass()" style="margin: 0px 20px">{{fees}}</span></p>
+    <span [ngClass]="getClass()" style="margin: 0px 20px">{{fees}}</span>
+
+    <button (click)="onDeleteClicked($event)">Delete</button>
+
+</p>

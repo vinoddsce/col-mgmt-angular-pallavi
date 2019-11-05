@@ -21,7 +21,7 @@
 </p> -->
 
 <app-student *ngFor="let student of students" [_id]="student._id" [name]="student.name" [course]="student.course"
-    [fees]="student.fees">
+    [fees]="student.fees" (deleteStudent)="deleteStudent($event)">
 
 </app-student>
                        

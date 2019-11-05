@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-student',
@@ -7,10 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class StudentComponent {
 
-  @Input() _id: number = 0;
+  @Input() _id: string = '';
   @Input() name: string = '';
   @Input() course: string = '';
   @Input() fees: number = 0;
+
+  @Output() deleteStudent = new EventEmitter<string>();
 
   getClass() {
     if (this.fees === 0) {
@@ -20,4 +22,8 @@ export class StudentComponent {
     }
   }
 
+  onDeleteClicked(event) {
+    console.log("Student -> onDeleteClicked");
+    this.deleteStudent.emit(this._id);
+  }
 }

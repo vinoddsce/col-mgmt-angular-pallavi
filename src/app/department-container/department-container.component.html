@@ -18,44 +18,33 @@
 
     <h3>Student Form</h3>
 
-    <form [formGroup]="studentForm" (ngSubmit)="onSubmit($event)">
-        <label>
-            Name:
-            <input type="text" formControlName="stdName" required />
-        </label>
-        <label>
-            Course:
-            <input type="text" formControlName="stdCourse" required />
-        </label>
-        <label>
-            Fees:
-            <input type="text" formControlName="stdFees" />
-        </label>
-
-        <div formGroupName="address">
-            <h3>Address</h3>
-
-            <label>
-                Street:
-                <input type="text" formControlName="street">
-            </label>
-
-            <label>
-                City:
-                <input type="text" formControlName="city">
-            </label>
-
-            <label>
-                State:
-                <input type="text" formControlName="state">
-            </label>
-
-            <label>
-                Zip Code:
-                <input type="text" formControlName="zip">
-            </label>
+    <form #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)" novalidate>
+         
+            <div class="form-group">
+                   <label for="name">Name</label>
+                   <input type="text" class="form-control" name="stdName" [ngModel]="currentStudent.name" minlength="5"
+                maxlength="10" required>
+                </div>
+         <div *ngIf="!studentForm.controls.stdName?.valid && (studentForm.controls.stdName?.dirty || studentForm.controls.stdName?.touched)"
+            style="color: red;">
+               <div [hidden]="!studentForm.controls.stdName.errors.required">
+                Name is required
+                   </div>
         </div>
-        <button type="submit" [disabled]="!studentForm.valid">Submit</button>
+            <div class="form-group">
+                    <label for="course">Course</label>
+                    <input type="text" class="form-control" name="stdCourse" [ngModel]="currentStudent.course">
+                </div>
+
+         <div class="form-group">
+                    <label for="fees">Fees</label>
+                    <input type="text" class="form-control" name="stdFees" [ngModel]="currentStudent.fees">
+                </div>
+
+            <div class="form-group">
+                     <button type="submit" [disabled]="!studentForm.valid">Submit</button>
+                </div>
+         
     </form>
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, ViewChild, ElementRef, ContentChild, ContentChildren, AfterViewInit, TemplateRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, ViewChild, ElementRef, ContentChild, ContentChildren, AfterViewInit, TemplateRef, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import Student from '../model/Student';
 import { StudentComponent } from './student/student.component';
 
@@ -26,7 +26,7 @@ export class StudentContainerComponent implements OnChanges, OnInit, DoCheck,
 
   previousStudents: Student[] = [];
 
-
+  @Output() deleteStudentEmitter = new EventEmitter<string>();
   @ViewChildren(StudentComponent) studentComponenets: QueryList<StudentComponent>;
 
   constructor() {
@@ -53,7 +53,11 @@ export class StudentContainerComponent implements OnChanges, OnInit, DoCheck,
     //   this.countMessage = "No Student Added";
     // }
     this.countMessage = this.count > 0 ? "Total Students: " + this.count : "No Student Added";
+  }
 
+  deleteStudent(_id: string) {
+    console.log("Student Container -> onDeleteClicked: ", _id);
+    this.deleteStudentEmitter.emit(_id);
   }
 
   ngDoCheck(): void {

@@ -1,61 +1,42 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import Student from '../model/Student';
+import { StudentComponent } from '../student-container/student/student.component';
 
 @Component({
   selector: 'app-department-container',
   templateUrl: './department-container.component.html',
   styleUrls: ['./department-container.component.css']
 })
-export class DepartmentContainerComponent {
+export class DepartmentContainerComponent implements OnInit {
 
-  @Output() addStudentEvent: EventEmitter<{ name: string, course: string, fees: number }> = new EventEmitter<{ name: string, course: string, fees: number }>();
+  @Output() addStudentEvent = new EventEmitter<Student>();
   deptName: string = "JavaScript Dept.";
-
   showErrorMessage: boolean = false;
 
+  currentStudent: Student = new Student();
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
+  }
+
+  ngOnInit() {
+    this.currentStudent.name = "Vin";
+    this.currentStudent.course = "Ang";
+    this.currentStudent.fees = 9090;
 
   }
 
-  // stdName: string = "";
-  // stdCourse: string = "";
-  // stdFees: number = 0;
+  onSubmit(studentForm) {
+    console.log("Submit Event: ", studentForm.value);
 
-  // studentForm = new FormGroup({
-  //   stdName: new FormControl(''),
-  //   stdCourse: new FormControl(''),
-  //   stdFees: new FormControl(''),
-  //   address: new FormGroup({
-  //     street: new FormControl(''),
-  //     city: new FormControl(''),
-  //     state: new FormControl(''),
-  //     zip: new FormControl('')
-  //   })
-  // })
-
-  studentForm = this.fb.group({
-    stdName: [''],
-    stdCourse: [''],
-    stdFees: ['', Validators.required],
-    address: this.fb.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: ['']
-    }),
-  });
-
-  onSubmit() {
-    console.log("Submit Event: ", this.studentForm.value);
-    if (this.studentForm.value.stdName === null || this.studentForm.value.stdName === '') {
+    if (studentForm.value.stdName === null || studentForm.value.stdName === '') {
       this.showErrorMessage = true;
     } else {
       this.showErrorMessage = false;
-      this.addStudentEvent.emit({
-        name: this.studentForm.value.stdName,
-        course: this.studentForm.value.stdCourse, fees: this.studentForm.value.stdFees
-      });
+      this.currentStudent.name = studentForm.value.stdName;
+      this.currentStudent.course = studentForm.value.stdCourse;
+      this.currentStudent.fees = studentForm.value.stdFees;
+      this.addStudentEvent.emit(this.currentStudent);
     }
   }
 }
