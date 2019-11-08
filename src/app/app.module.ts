@@ -13,6 +13,7 @@ import ChangeBgColorDirective from './directives/change-bg-color.directive';
 import BackgroudGreenDirective from './directives/backgroud.green.directive';
 import { ShowLogoDirective } from './directives/show.logo.directive';
 import TempConverterPipe from './pipes/temp.converter.pipe';
+import { StudentService } from './services/student.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import TempConverterPipe from './pipes/temp.converter.pipe';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  // providers: [StudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

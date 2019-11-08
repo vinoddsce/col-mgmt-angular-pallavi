@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import Student from './model/Student';
+import { StudentService } from './services/student.service';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +26,7 @@ export class AppComponent implements OnInit {
 
   toDate: Date = new Date();
 
-  constructor(private ref: ElementRef) {
-
+  constructor(private stdService: StudentService) {
   }
 
 
@@ -45,6 +45,9 @@ export class AppComponent implements OnInit {
     // this.students.push(this.s1);
     // this.students.push(this.s2);
     // this.students.push(this.s3);
+
+    this.students = this.stdService.getStudents();
+
   }
   addStudentEvent(obj: Student) {
     let std = {
