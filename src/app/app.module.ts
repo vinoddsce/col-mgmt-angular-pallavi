@@ -14,6 +14,9 @@ import BackgroudGreenDirective from './directives/backgroud.green.directive';
 import { ShowLogoDirective } from './directives/show.logo.directive';
 import TempConverterPipe from './pipes/temp.converter.pipe';
 import { StudentService } from './services/student.service';
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { SideBarToggleComponent } from './side-bar-toggle/side-bar-toggle.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,11 +29,14 @@ import { StudentService } from './services/student.service';
     ChangeBgColorDirective,
     BackgroudGreenDirective,
     ShowLogoDirective,
-    TempConverterPipe
+    TempConverterPipe,
+    SideBarComponent,
+    SideBarToggleComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   // providers: [StudentService],

@@ -30,7 +30,7 @@ export class StudentContainerComponent implements OnChanges, OnInit, DoCheck,
   @ViewChildren(StudentComponent) studentComponenets: QueryList<StudentComponent>;
 
   constructor() {
-    console.log("StudentContainerComponent->constructor(): ", this.students);
+    // console.log("StudentContainerComponent->constructor(): ", this.students);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -40,11 +40,11 @@ export class StudentContainerComponent implements OnChanges, OnInit, DoCheck,
     //   this.countMessage = "No Student Added";
     // }
     this.countMessage = this.count > 0 ? "Total Students: " + this.count : "No Student Added";
-    console.log("StudentContainerComponent->ngOnChanges():", changes)
+    // console.log("StudentContainerComponent->ngOnChanges():", changes)
   }
 
   ngOnInit(): void {
-    console.log("StudentContainerComponent->ngOnInit():");
+    // console.log("StudentContainerComponent->ngOnInit():");
     this.previousStudents = this.students.map(s => s);
 
     // if (this.count > 0) {
@@ -56,21 +56,21 @@ export class StudentContainerComponent implements OnChanges, OnInit, DoCheck,
   }
 
   deleteStudent(_id: string) {
-    console.log("Student Container -> onDeleteClicked: ", _id);
+    // console.log("Student Container -> onDeleteClicked: ", _id);
     this.deleteStudentEmitter.emit(_id);
   }
 
   ngDoCheck(): void {
     if (this.previousStudents.length === this.students.length) {
-      console.log("StudentContainerComponent->ngDoCheck(): Same");
+      // console.log("StudentContainerComponent->ngDoCheck(): Same");
     } else {
-      console.log("StudentContainerComponent->ngDoCheck(): Changed");
+      // console.log("StudentContainerComponent->ngDoCheck(): Changed");
       this.previousStudents = this.students.map(s => s);
     }
   }
 
   ngAfterContentInit(): void {
-    console.log("StudentContainerComponent->ngAfterContentInit(): Ref", this.headingRef);
+    // console.log("StudentContainerComponent->ngAfterContentInit(): Ref", this.headingRef);
   }
 
   ngAfterContentChecked(): void {
@@ -80,15 +80,15 @@ export class StudentContainerComponent implements OnChanges, OnInit, DoCheck,
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    console.log("StudentContainerComponent->ngAfterViewInit(): Ref", this.countRef);
-    console.log("StudentContainerComponent->ngAfterViewInit(): studentComponenets", this.studentComponenets);
+    // console.log("StudentContainerComponent->ngAfterViewInit(): Ref", this.countRef);
+    // console.log("StudentContainerComponent->ngAfterViewInit(): studentComponenets", this.studentComponenets);
 
   }
   ngAfterViewChecked(): void {
     //Called after every check of the component's view. Applies to components only.
     //Add 'implements AfterViewChecked' to the class.
     // console.log("StudentContainerComponent->ngAfterViewChecked()");
-    console.log("StudentContainerComponent->ngAfterViewChecked(): studentComponenets", this.studentComponenets);
+    // console.log("StudentContainerComponent->ngAfterViewChecked(): studentComponenets", this.studentComponenets);
   }
 }
 

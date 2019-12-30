@@ -46,7 +46,14 @@ export class AppComponent implements OnInit {
     // this.students.push(this.s2);
     // this.students.push(this.s3);
 
-    this.students = this.stdService.getStudents();
+    console.log('AppComponent -> ngOnInit(): void', this.stdService.getStudents());
+    this.stdService.getStudents().subscribe(res => {
+      console.log('Data: ', res);
+      this.students = res;
+      // this.students = [
+      //   { _id: "1", name: "Vinod", course: "Angular8", fees: 999 }
+      // ];
+    });
 
   }
   addStudentEvent(obj: Student) {
