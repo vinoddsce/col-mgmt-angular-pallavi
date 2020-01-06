@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import Student from './model/Student';
 import { StudentService } from './services/student.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,11 @@ export class AppComponent implements OnInit {
 
   title: string = 'Student Management Angular App !!!!!';
   departmentName: string = "NA";
+
+  stdAddErrorMessage: string = '';
+  errorMessage: string = '';
+
+
   // students: { _id: number, name: string, course: string, fees: number }[] = [];
 
   // s1 = { _id: "", name: "Vinod", course: "", fees: 0 };
@@ -50,33 +56,38 @@ export class AppComponent implements OnInit {
     this.stdService.getStudents().subscribe(res => {
       console.log('Data: ', res);
       this.students = res;
-      // this.students = [
-      //   { _id: "1", name: "Vinod", course: "Angular8", fees: 999 }
-      // ];
+    }, (error: any) => {
+      console.log('Error-Response: ', error);
+      this.errorMessage = error.statusText;
     });
 
   }
   addStudentEvent(obj: Student) {
-    let std = {
-      _id: this.students.length + 1 + "",
-      name: obj.name,
-      course: obj.course,
-      fees: obj.fees
-    }
 
-    this.students.push(std);
+    let result = this.stdService.addStudent(obj);
+
+    result.subscribe(data => {
+      console.log('Result: ', data);
+      this.students.push(data);
+    },
+      (err: HttpErrorResponse) => {
+        console.log(err.error);
+        console.log(err.name);
+        console.log(err.message);
+        console.log(err.status);
+        this.stdAddErrorMessage = err.message;
+      }
+    );
+    // 
     this.count = this.students.length;
     console.log(this.students);
   }
 
   deleteStudent(_id: string) {
-    console.log("Before: ", this.students);
-    this.students = this.students.filter(std => {
-      if (std._id != _id) {
-        return std;
-      }
-    });
-    console.log("After: ", this.students);
+    this.stdService.deleteStd(_id).subscribe(info => {
+
+    })
+
   }
 }
 

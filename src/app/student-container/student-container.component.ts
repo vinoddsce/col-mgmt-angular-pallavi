@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, ViewChild, ElementRef, ContentChild, ContentChildren, AfterViewInit, TemplateRef, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import Student from '../model/Student';
 import { StudentComponent } from './student/student.component';
+import { StudentService } from '../services/student.service';
 
 @Component({
   selector: 'app-student-container',
@@ -15,9 +16,12 @@ export class StudentContainerComponent implements OnChanges, OnInit, DoCheck,
   @Input() count: number = 0;
 
 
+  alertMessage: string = '';
+
   // @Input() companyLogo: TemplateRef<any>;
 
   countMessage: string = "";
+  errorMessage: string = "";
 
   // It is mandatory to provide a static flag to define when you want a 
   // ViewChild and ContentChild instance to be resolved.
@@ -29,7 +33,7 @@ export class StudentContainerComponent implements OnChanges, OnInit, DoCheck,
   @Output() deleteStudentEmitter = new EventEmitter<string>();
   @ViewChildren(StudentComponent) studentComponenets: QueryList<StudentComponent>;
 
-  constructor() {
+  constructor(private stdService: StudentService) {
     // console.log("StudentContainerComponent->constructor(): ", this.students);
   }
 
@@ -56,8 +60,16 @@ export class StudentContainerComponent implements OnChanges, OnInit, DoCheck,
   }
 
   deleteStudent(_id: string) {
-    // console.log("Student Container -> onDeleteClicked: ", _id);
-    this.deleteStudentEmitter.emit(_id);
+    this.stdService.deleteStd(_id).subscribe((info: any) => {
+      this.alertMessage = info.message;
+      this.stdService.getStudents().subscribe(res => {
+        console.log('Data: ', res);
+        this.students = res;
+      });
+    }, error => {
+      console.log('Error-Response: ', error);
+      this.errorMessage = error.statusText;
+    })
   }
 
   ngDoCheck(): void {

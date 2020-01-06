@@ -32,7 +32,7 @@
     <hr />
 
 
-
+    <p style="color: red;">{{stdAddErrorMessage}}</p>
     <app-department-container (addStudentEvent)="addStudentEvent($event)">
         <!-- <ng-container *ngTemplateOutlet="companyLogo"></ng-container> -->
     </app-department-container>
@@ -44,6 +44,9 @@
         <h2>Title: This Is Student List Container</h2>
         <h3>Sub-Title: Only Students</h3>
     </app-student-container> -->
+
+
+    <p style="color: red;">{{errorMessage}}</p>
 
     <app-student-container [students]="students" [count]="count" (deleteStudentEmitter)="deleteStudent($event)">
         <h1 #heading>Heading Ref</h1>
